@@ -173,3 +173,26 @@ from rest_framework import viewsets
 class EmployeesViewset(viewsets.ModelViewSet):
     queryset = Employees.objects.all()
     serializer_class = EmployeeSerializer
+
+from rest_framework import generics
+from blogs.models import Blogs, Comments
+from blogs.serializers import BlogSerializers, CommentSerializers
+class CommentView(generics.ListCreateAPIView):
+    queryset = Comments.objects.all()
+    serializer_class = CommentSerializers
+
+class BlogViews(generics.ListCreateAPIView):
+    queryset = Blogs.objects.all()
+    serializer_class = BlogSerializers
+
+class CommentDetailsView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Comments.objects.all()
+    serializer_class = CommentSerializers
+    lookup_field = 'pk'
+    
+    
+class BlogDetailsView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Blogs.objects.all()
+    serializer_class = BlogSerializers
+    lookup_field ='pk'
+    

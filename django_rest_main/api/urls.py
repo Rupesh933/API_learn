@@ -15,5 +15,11 @@ urlpatterns = [
     # class based url
     # path('employees/', views.EmployeesList.as_view()),
     # path('employees/<int:pk>/', views.SingleEmployee.as_view()),
-    path('', include(router.urls))
+    path('', include(router.urls)),
+
+
+    path('comments/', views.CommentView.as_view()),
+    path('blogs/', views.BlogViews.as_view()),
+    path('comments/<int:pk>/', views.CommentDetailsView.as_view()),
+    path('blogs/<int:pk>/', views.BlogDetailsView.as_view()),
 ]
