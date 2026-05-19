@@ -139,33 +139,37 @@ class SingleEmployee(generics.RetrieveUpdateDestroyAPIView):
 '''
 
 from rest_framework import viewsets
-class EmployeesViewset(viewsets.ViewSet):
-    def list(self, request):
-        queryset = Employees.objects.all()
-        serializer = EmployeeSerializer(queryset, many=True)
-        return Response(serializer.data)
+# class EmployeesViewset(viewsets.ViewSet):
+#     def list(self, request):
+#         queryset = Employees.objects.all()
+#         serializer = EmployeeSerializer(queryset, many=True)
+#         return Response(serializer.data)
     
-    def create(self, request):
-        serializer = EmployeeSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors)
+#     def create(self, request):
+#         serializer = EmployeeSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors)
     
-    def retrieve(self, request, pk=None):
-        employee = get_object_or_404(Employees, pk=pk)
-        serializer = EmployeeSerializer(employee)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+#     def retrieve(self, request, pk=None):
+#         employee = get_object_or_404(Employees, pk=pk)
+#         serializer = EmployeeSerializer(employee)
+#         return Response(serializer.data, status=status.HTTP_200_OK)
     
-    def update(self, request, pk=None):
-        employee = get_object_or_404(Employees, pk=pk)
-        serializer = EmployeeSerializer(employee)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors)
+#     def update(self, request, pk=None):
+#         employee = get_object_or_404(Employees, pk=pk)
+#         serializer = EmployeeSerializer(employee)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_200_OK)
+#         return Response(serializer.errors)
 
-    def delete(self, request, pk=None):
-        employee = get_object_or_404(Employees, pk=pk)
-        employee.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+#     def delete(self, request, pk=None):
+#         employee = get_object_or_404(Employees, pk=pk)
+#         employee.delete()
+#         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class EmployeesViewset(viewsets.ModelViewSet):
+    queryset = Employees.objects.all()
+    serializer_class = EmployeeSerializer
