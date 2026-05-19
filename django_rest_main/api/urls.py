@@ -13,8 +13,8 @@ urlpatterns = [
     path('singleStudent/<int:pk>/', views.singleStudentViewDetails),
 
     # class based url
-    # path('employees/', views.EmployeesList.as_view()),
-    # path('employees/<int:pk>/', views.SingleEmployee.as_view()),
+    path('employees/', views.EmployeesList.as_view()),
+    path('employees/<int:pk>/', views.SingleEmployee.as_view()),
     path('', include(router.urls)),
 
 

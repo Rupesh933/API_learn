@@ -122,13 +122,15 @@ class SingleEmployee(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.
 
 '''
 
-'''
+
 # generic
 from rest_framework import generics
+from .paginations import CustomPagination
 # class EmployeesList(generics.ListAPIView, generics.CreateAPIView):
 class EmployeesList(generics.ListCreateAPIView):
     queryset = Employees.objects.all()
     serializer_class = EmployeeSerializer
+    pagination_class = CustomPagination
 
 # class SingleEmployee(generics.RetrieveAPIView, generics.UpdateAPIView, generics.DestroyAPIView):
 class SingleEmployee(generics.RetrieveUpdateDestroyAPIView):
@@ -136,7 +138,6 @@ class SingleEmployee(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = EmployeeSerializer
     lookup_field = 'pk'
 
-'''
 
 from rest_framework import viewsets
 # class EmployeesViewset(viewsets.ViewSet):
